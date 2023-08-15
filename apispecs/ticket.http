@@ -1,0 +1,33 @@
+### GET ALL TICKET /tickets //DONE
+GET http://localhost:3000/api/v1/tickets
+
+### GET SINGLE TICKET /tickets/:id //DONE
+GET http://localhost:3000/api/v1/tickets/ERR-0001
+
+### GET TICKET BY USER /tickets?userid=something //DONE
+GET http://localhost:3000/api/v1/tickets?userid=c461455d-760e-417a-9b28-ab420ee9a8ff
+
+### CREATE TICKET /tickets //DONE
+POST http://localhost:3000/api/v1/tickets
+
+{
+    "id": "",
+    "createdAt": "",
+    "updatedAt": "",
+    "title": "Tambahin AI pak",
+    "description": "Tambahin AI pak bla blaaa... ",
+    "category": "FEAT",
+    "status": "OPEN",
+    "priority": "LOW",
+    "assigneeId": "",
+    "userId": "c461455d-760e-417a-9b28-ab420ee9a8ff"
+}
+
+### UPDATE TICKET /ticket/:id
+PATCH http://localhost:3000/api/v1/tickets/ERR-0001
+
+{
+    "status": "CLOSED",
+    "priority": "HIGH",
+    "assigneeId": null
+}

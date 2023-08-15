@@ -28,24 +28,47 @@ enum Priority {
   HIGH
 }
 
+enum Category {
+  BUG
+  FEAT
+  OTHER
+}
+
 model User {
-  id        String   @id @default(uuid())
+  id        String    @id @default(uuid())
   firstName String
   lastName  String
-  email     String   @unique
+  email     String    @unique
   password  String
-  role      Role     @default(USER)
+  role      Role      @default(USER)
   ticket    Ticket[]
+  assignee  Ticket[]  @relation("assigne")
+  comment   Comment[]
 }
 
 model Ticket {
-  id          String   @id @default(uuid())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id          String    @id @default(uuid())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
   title       String
   description String
-  status      Status   @default(OPEN)
-  priority    Priority @default(LOW)
+  category    Category  @default(BUG)
+  status      Status    @default(OPEN)
+  priority    Priority  @default(LOW)
+  assigneeId  String?
+  assignee    User?     @relation("assigne", fields: [assigneeId], references: [id])
   userId      String
-  user        User     @relation(fields: [userId], references: [id])
+  user        User      @relation(fields: [userId], references: [id])
+  comment     Comment[]
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  content   String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  ticketId  String
+  ticket    Ticket   @relation(fields: [ticketId], references: [id])
 }

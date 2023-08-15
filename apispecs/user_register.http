@@ -1,0 +1,9 @@
+### Create User
+POST http://localhost:3000/api/v1/auth/register
+
+{
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "hello@johndoe.com",
+    "password": "123456"
+}
