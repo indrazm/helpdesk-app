@@ -1,0 +1,15 @@
+### GET NOTIFICATION BY USERID
+GET http://localhost:3000/api/v1/notifications?userId=c461455d-760e-417a-9b28-ab420ee9a8ff
+
+### CREATE NOTIFICATION 
+POST http://localhost:3000/api/v1/notifications
+
+{
+    "content": "update comment",
+    "userId": "c461455d-760e-417a-9b28-ab420ee9a8ff",
+    "ticketId": "BUG-202308001"
+}
+
+### UPDATE NOTIFICATION
+PATCH http://localhost:3000/api/v1/notifications/a3323dae-bb28-4aaa-8584-d6afdf84b152
+

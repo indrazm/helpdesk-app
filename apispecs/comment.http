@@ -1,0 +1,12 @@
+### GET ALL COMMENT BY TICKET ID
+GET http://localhost:3000/api/v1/comments?ticketId=BUG-202308001
+
+### CREATE NEW COMMENT BASED ON TICKET ID
+POST http://localhost:3000/api/v1/comments
+
+{
+    "content": "Test comment",
+    "attachments": "",
+    "userId": "c461455d-760e-417a-9b28-ab420ee9a8ff",
+    "ticketId": "BUG-202308001"
+}

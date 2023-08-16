@@ -1,10 +1,10 @@
 ### GET ALL TICKET /tickets //DONE
 GET http://localhost:3000/api/v1/tickets
 
-### GET SINGLE TICKET /tickets/:id //DONE
+### GET SINGLE TICKET /tickets/:id //DONE // Dynamic
 GET http://localhost:3000/api/v1/tickets/ERR-0001
 
-### GET TICKET BY USER /tickets?userid=something //DONE
+### GET TICKET BY USER /tickets?userid=something //DONE // Filtering
 GET http://localhost:3000/api/v1/tickets?userid=c461455d-760e-417a-9b28-ab420ee9a8ff
 
 ### CREATE TICKET /tickets //DONE
@@ -19,6 +19,7 @@ POST http://localhost:3000/api/v1/tickets
     "category": "FEAT",
     "status": "OPEN",
     "priority": "LOW",
+    "attachments": "",
     "assigneeId": "",
     "userId": "c461455d-760e-417a-9b28-ab420ee9a8ff"
 }

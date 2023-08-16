@@ -35,34 +35,49 @@ enum Category {
 }
 
 model User {
-  id        String    @id @default(uuid())
+  id        String         @id @default(uuid())
   firstName String
   lastName  String
-  email     String    @unique
+  email     String         @unique
   password  String
-  role      Role      @default(USER)
+  role      Role           @default(USER)
   ticket    Ticket[]
-  assignee  Ticket[]  @relation("assigne")
+  assignee  Ticket[]       @relation("assigne")
   comment   Comment[]
+  notif     Notification[]
 }
 
 model Ticket {
-  id          String    @id @default(uuid())
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  title       String
-  description String
-  category    Category  @default(BUG)
-  status      Status    @default(OPEN)
-  priority    Priority  @default(LOW)
-  assigneeId  String?
-  assignee    User?     @relation("assigne", fields: [assigneeId], references: [id])
-  userId      String
-  user        User      @relation(fields: [userId], references: [id])
-  comment     Comment[]
+  id           String         @id @default(uuid())
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  title        String
+  description  String
+  category     Category       @default(BUG)
+  status       Status         @default(OPEN)
+  priority     Priority       @default(LOW)
+  assigneeId   String?
+  assignee     User?          @relation("assigne", fields: [assigneeId], references: [id])
+  userId       String
+  user         User           @relation(fields: [userId], references: [id])
+  attachments  String?
+  comment      Comment[]
+  notification Notification[]
 }
 
 model Comment {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  content     String
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  ticketId    String
+  ticket      Ticket   @relation(fields: [ticketId], references: [id])
+  attachments String?
+}
+
+model Notification {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -71,4 +86,5 @@ model Comment {
   user      User     @relation(fields: [userId], references: [id])
   ticketId  String
   ticket    Ticket   @relation(fields: [ticketId], references: [id])
+  isRead    Boolean  @default(false)
 }
