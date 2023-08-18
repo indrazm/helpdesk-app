@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
+
 import moment from 'moment';
 import { prisma } from '@/utils/prisma';
+
+// import { Category } from '@/components/Dashboard/types/enum';
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -45,9 +48,7 @@ export async function POST(req: NextRequest) {
       },
     });
     const ticketNumber = lastTicketNumber
-      ? (Number(lastTicketNumber?.id.slice(lastTicketNumber.id.length - 3, lastTicketNumber.id.length)) + 1)
-          .toString()
-          .padStart(3, '0')
+      ? (Number(lastTicketNumber?.id.slice(lastTicketNumber.id.length - 3, lastTicketNumber.id.length)) + 1).toString().padStart(3, '0')
       : '001';
 
     const ticket = await prisma.ticket.create({
