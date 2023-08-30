@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-
 import moment from 'moment';
 import { prisma } from '@/utils/prisma';
-
-// import { Category } from '@/components/Dashboard/types/enum';
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);

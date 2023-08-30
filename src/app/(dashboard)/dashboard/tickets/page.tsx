@@ -10,10 +10,5 @@ async function getAllTicket() {
 export default async function Page() {
   const { data } = await getAllTicket();
 
-  return (
-    <div>
-      <h3>All Ticket</h3>
-      <TableComponent data={data} />
-    </div>
-  );
+  return <TableComponent data={data} />;
 }

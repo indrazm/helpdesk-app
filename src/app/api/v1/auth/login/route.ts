@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
       role: user.role,
     };
 
-    const helpdeskAccessToken = sign(payload, process.env.ACCESS_SECRET_KEY!, { expiresIn: '1d' });
+    const helpdeskAccessToken = sign(payload, process.env.ACCESS_SECRET_KEY!, { expiresIn: '30s' });
     const helpdeskRefreshToken = sign(payload, process.env.REFRESH_SECRET_KEY!, { expiresIn: '30d' });
 
     cookies().set('helpdeskAccessToken', helpdeskAccessToken);
